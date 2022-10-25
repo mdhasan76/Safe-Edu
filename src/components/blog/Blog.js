@@ -3,9 +3,9 @@ import React from 'react';
 const Blog = () => {
     return (
         <div>
-            <h1 className='text-4xl font-medium text-center py-6 bg-green-600 m-3 rounded-lg'>MY BLOG</h1>
+            <h1 className='text-4xl font-medium text-center py-6  bg-gradient-to-r from-green-400 to-blue-500 m-3 rounded-lg'>MY BLOG</h1>
 
-            <section className='max-w-2xl mx-auto'>
+            <section className='max-w-2xl mx-auto p-3'>
                 <div className='my-5'>
                     <h4 className='text-3xl py-2'>1. What is Cors?</h4>
                     <p className='text-slate-600 text-lg text-justify leading-10'>Cross-origin resource sharing (CORS) is a browser security feature that restricts cross-origin HTTP requests that are initiated from scripts running in the browser. If your REST API's resources receive non-simple cross-origin HTTP requests, you need to enable CORS support.CORS is an abbreviation for Cross-Origin Response Sharing. It is what allows the website on one URL to request data from a different URL, and it frustrates both the frontend and backend devs alike.</p>
