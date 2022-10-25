@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../authContext/AuthProvider';
 
 const Register = () => {
-    const { createNewUser, updateUser, googleSignIn } = useContext(AuthContext);
+    const { createNewUser, updateUser, googleSignIn, githubSignIn } = useContext(AuthContext);
 
 
     //create new user with email & password
@@ -34,8 +34,21 @@ const Register = () => {
             })
     }
 
+
+    //Google Sign in 
     const handleGoogle = () => {
         googleSignIn()
+            .then(res => {
+                console.log(res.user)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    //github sign in
+    const handleGithub = () => {
+        githubSignIn()
             .then(res => {
                 console.log(res.user)
             })
@@ -86,7 +99,7 @@ const Register = () => {
                             <button onClick={handleGoogle} className="btn btn-outline btn-primary">Continew with Google</button>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-outline">Continew With Github</button>
+                            <button onClick={handleGithub} className="btn btn-outline">Continew With Github</button>
                         </div>
                     </form>
                 </div>
