@@ -6,6 +6,8 @@ import Courses from '../../layout/Courses'
 import Main from '../../layout/Main';
 import Home from '../Home/Home';
 import NotFound from '../404page/NotFound';
+import Login from '../login/Login';
+import Register from '../register/Register';
 
 const router = createBrowserRouter([
     {
@@ -27,7 +29,16 @@ const router = createBrowserRouter([
             {
                 path: '/courses',
                 element: <Courses />,
+            },
+            {
+                path: '/login',
+                element: <Login />
+            },
+            {
+                path: '/register',
+                element: <Register />
             }
+
         ]
     },
     {
