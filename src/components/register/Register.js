@@ -95,11 +95,15 @@ const Register = () => {
                         <div className="form-control mt-6">
                             <button className="btn bg-teal-500 border-none">Register</button>
                         </div>
-                        <div className="form-control mt-6">
-                            <button onClick={handleGoogle} className="btn btn-outline btn-primary">Continew with Google</button>
-                        </div>
-                        <div className="form-control mt-6">
-                            <button onClick={handleGithub} className="btn btn-outline">Continew With Github</button>
+
+                        <div className='mt-3'>
+                            <p className='text-2xl font-medium mb-5 text-center text-fuchsia-500'> _______or_______</p>
+                            <div className="form-control mb-2">
+                                <button onClick={handleGoogle} className="btn btn-outline btn-primary">Continew with Google</button>
+                            </div>
+                            <div className="form-control ">
+                                <button onClick={handleGithub} className="btn btn-outline">Continew With Github</button>
+                            </div>
                         </div>
                     </form>
                 </div>

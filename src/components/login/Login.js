@@ -21,7 +21,7 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" placeholder="password" className="input input-bordered" required />
+                                <input type="password" placeholder="password" className="input input-bordered" required />
                                 <label className="label">
                                     <p className="label-text-alt">No account yet? <Link to="/register" className='link link-hover text-blue-500'>Register</Link> now</p>
                                 </label>

@@ -1,8 +1,13 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../asssets/logo.jpg'
+import { AuthContext } from '../authContext/AuthProvider';
+import { FaUserCircle } from 'react-icons/fa'
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext);
+    console.log(user.photoURL)
     return (
         <section className='bg-slate-100  sticky top-0 z-10'>
             <div className="navbar px-2 lg:px-5 mx-auto max-w-6xl ">
@@ -29,12 +34,27 @@ const Navbar = () => {
                         <li><Link to={'/courses'}>Courses</Link></li>
                         <li><Link to={'/faq'}>FAQ </Link></li>
                         <li><Link to={'/blog'}>Blog</Link></li>
-                        <li><Link to={'/login'}>Login</Link></li>
                         <li><Link to={'/register'}>Register</Link></li>
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn" href='/'>Get started</a>
+                    <div className='tooltip tooltip-bottom' data-tip={user?.displayName}>
+                        {
+                            user?.photoURL
+                                ?
+                                <img src={user.photoURL
+                                } alt="" className='h-8 rounded-full' /> :
+                                <FaUserCircle className='text-2xl' />
+                        }
+                    </div>
+
+                    <div className='ml-2'>
+                        {
+                            user?.uid ?
+                                <button className='btn btn-sm border-none'> Sign out</button> :
+                                <button className=' btn btn-sm bg-teal-500 border-none'><Link to={'/login'}>Log In</Link></button>
+                        }
+                    </div>
                 </div>
             </div>
         </section>
