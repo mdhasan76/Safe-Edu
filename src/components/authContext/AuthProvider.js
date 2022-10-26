@@ -69,10 +69,10 @@ const AuthProvider = ({ children }) => {
         const unsribscibe = onAuthStateChanged(auth, (user) => {
             console.log(user);
             setUser(user);
-            setLoading(false)
+            setLoading(false);
         })
 
-        return unsribscibe();
+        return () => unsribscibe();
     }, [])
 
     const authInfo = { user, googleSignIn, createNewUser, updateUser, githubSignIn, signIn, logOut, setUser, loading }
