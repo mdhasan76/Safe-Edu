@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Card = ({ courseData }) => {
     // console.log(courseData.rating)
-    const { teacher, course, price, ratings, title, img } = courseData;
+    const { id, teacher, course, price, ratings, title, img } = courseData;
 
     return (
         <div className="card card-compact bg-base-100 shadow-xl">
@@ -24,7 +24,7 @@ const Card = ({ courseData }) => {
                     <span className='text-lg ml-2'>{ratings}</span>
                 </div>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary"><Link to={'/courses/:id'}>See Dtails</Link></button>
+                    <button className="btn btn-primary"><Link to={`/courses/${id}`}>See Dtails</Link></button>
                 </div>
             </div>
         </div>
