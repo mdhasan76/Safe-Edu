@@ -34,7 +34,7 @@ const router = createBrowserRouter([
                 element: <Courses />,
                 children: [
                     {
-                        path: "/courses",
+                        path: "/courses/",
                         loader: () => fetch(`https://safe-edu-server.vercel.app/courses`),
                         element: <CoursesCard />
                     },
