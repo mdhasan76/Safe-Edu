@@ -10,6 +10,8 @@ import Login from '../login/Login';
 import Register from '../register/Register';
 import CoursesCard from '../../layout/CoursesCard';
 import CourseDetails from '../courseDetails/CourseDetails';
+import Checkout from '../checkOut/Checkout';
+import PrivateRoute from '../privateRoute/PrivateRoute'
 
 const router = createBrowserRouter([
     {
@@ -44,6 +46,10 @@ const router = createBrowserRouter([
                         element: <CourseDetails />
                     }
                 ]
+            },
+            {
+                path: "/checkout",
+                element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
             },
             {
                 path: '/login',

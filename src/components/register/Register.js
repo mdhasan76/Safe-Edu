@@ -1,10 +1,14 @@
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../authContext/AuthProvider';
 
 const Register = () => {
-    const { createNewUser, updateUser, googleSignIn, githubSignIn } = useContext(AuthContext);
+    const [error, setError] = useState('');
+
+    const { createNewUser, updateUser, googleSignIn, githubSignIn } =
+        useContext(AuthContext);
 
 
     //create new user with email & password
@@ -17,6 +21,8 @@ const Register = () => {
         const password = form.password.value;
         console.log(name, photo, email, password)
 
+
+        setError('')
         createNewUser(email, password)
             .then(res => {
                 console.log(res.user);
@@ -31,6 +37,7 @@ const Register = () => {
             })
             .catch(err => {
                 console.log(err)
+                setError(err.message)
             })
     }
 
@@ -39,10 +46,12 @@ const Register = () => {
     const handleGoogle = () => {
         googleSignIn()
             .then(res => {
+                setError('')
                 console.log(res.user)
             })
             .catch(err => {
                 console.log(err)
+                setError(err.message)
             })
     }
 
@@ -50,10 +59,12 @@ const Register = () => {
     const handleGithub = () => {
         githubSignIn()
             .then(res => {
+                setError('')
                 console.log(res.user)
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
+                setError(err.message)
             })
     }
 
@@ -91,6 +102,11 @@ const Register = () => {
                             <label className="label">
                                 <p className="label-text-alt">Have account ? please <Link to="/login" className='link link-hover text-blue-500'>login</Link></p>
                             </label>
+                        </div>
+                        <div className='text-rose-600'>
+                            {
+                                error
+                            }
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn bg-teal-500 border-none">Register</button>

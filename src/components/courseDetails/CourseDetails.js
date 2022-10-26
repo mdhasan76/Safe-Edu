@@ -37,7 +37,7 @@ const CourseDetails = () => {
                     </div>
                 </div>
                 <div className='text-center mt-4'>
-                    <Link to={'/'} className="btn btn-success text-white">Get Premium Access</Link>
+                    <Link to={'/checkout'} className="btn btn-success text-white">Get Premium Access</Link>
                 </div>
             </div>
         </div>

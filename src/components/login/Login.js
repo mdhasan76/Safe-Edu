@@ -1,12 +1,18 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../authContext/AuthProvider';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 
 const Login = () => {
-    const { signIn, setUser } = useContext(AuthContext);
+    const [errMsg, setErrMsg] = useState('');
+    const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state.from.pathname || '/';
 
     const handleLogIn = (e) => {
         e.preventDefault()
@@ -15,15 +21,17 @@ const Login = () => {
         const password = form.password.value;
         console.log(email, password);
 
+        setErrMsg('')
         signIn(email, password)
             .then(res => {
-                // console.log(res.user);
-                setUser(res.user);
+                console.log(res.user);
                 toast.success("Log In Successful");
-                <Navigate to={'/'} />
+                form.reset();
+                navigate(from, { replace: true })
             })
             .catch(err => {
-                console.log(err)
+                console.log(err.message)
+                setErrMsg(err.message);
             })
 
 
@@ -52,6 +60,7 @@ const Login = () => {
                                     <p className="label-text-alt">No account yet? <Link to="/register" className='link link-hover text-blue-500'>Register</Link> now</p>
                                 </label>
                             </div>
+                            <p className='text-rose-600'>{errMsg}</p>
                             <div className="form-control mt-6">
                                 <button className="btn bg-teal-500 border-none">Login</button>
                             </div>

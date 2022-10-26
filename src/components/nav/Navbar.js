@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    console.log(user.photoURL)
+    // console.log(user.photoURL)
 
     const handleLogOut = () => {
         logOut()
@@ -53,7 +53,7 @@ const Navbar = () => {
                 <div className="navbar-end">
                     <div className='tooltip tooltip-bottom' data-tip={user?.displayName}>
                         {
-                            user?.photoURL
+                            user?.photoURL != null
                                 ?
                                 <img src={user.photoURL
                                 } alt="" className='h-8 rounded-full' /> :

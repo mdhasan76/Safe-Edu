@@ -18,7 +18,8 @@ import { useState } from 'react';
 const auth = getAuth(app)
 export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
 
     const googleProvider = new GoogleAuthProvider();
@@ -26,11 +27,13 @@ const AuthProvider = ({ children }) => {
 
     //sing in with google
     const googleSignIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
 
     //create user with email & password
     const createNewUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
@@ -50,6 +53,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const githubSignIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, githubProvider);
     }
 
@@ -62,20 +66,16 @@ const AuthProvider = ({ children }) => {
 
     //save user when chenge state
     useEffect(() => {
-        const unsribscibe = onAuthStateChanged(auth, user => {
-            if (user) {
-                console.log(user)
-                setUser(user)
-            }
-            else {
-                console.log('not sign in user')
-            }
+        const unsribscibe = onAuthStateChanged(auth, (user) => {
+            console.log(user);
+            setUser(user);
+            setLoading(false)
         })
 
         return unsribscibe();
     }, [])
 
-    const authInfo = { user, googleSignIn, createNewUser, updateUser, githubSignIn, signIn, logOut, setUser }
+    const authInfo = { user, googleSignIn, createNewUser, updateUser, githubSignIn, signIn, logOut, setUser, loading }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

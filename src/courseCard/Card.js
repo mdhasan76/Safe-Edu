@@ -24,7 +24,7 @@ const Card = ({ courseData }) => {
                     <span className='text-lg ml-2'>{ratings}</span>
                 </div>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary"><Link to={`/courses/${id}`}>See Dtails</Link></button>
+                    <Link className="btn btn-primary" to={`/courses/${id}`}> See Dtails</Link>
                 </div>
             </div>
         </div>
