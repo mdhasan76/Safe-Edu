@@ -1,17 +1,20 @@
 import React from 'react';
-import { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
-import { AuthContext } from '../components/authContext/AuthProvider';
+import { Link, Outlet, useLoaderData } from 'react-router-dom';
 
 const Courses = () => {
-    const { user } = useContext(AuthContext)
-    console.log(user)
+    const courseData = useLoaderData();
+    console.log(courseData)
+
     return (
         <div className='grid grid-cols-4'>
             <div className='col-span-1'>
-                <h2>Left side menu</h2>
+                <ul className='menu bg-base-100 max-w-xs mx-auto'>
+                    {
+                        courseData.map(course => <li className='text-center hover-bordered rounded-lg' key={course.id}><Link to={'/courses/:id'}>{course.course}</Link></li>)
+                    }
+                </ul>
             </div>
-            <div>
+            <div className='col-span-3 p-6'>
                 <Outlet />
             </div>
         </div>

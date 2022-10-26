@@ -8,6 +8,8 @@ import Home from '../Home/Home';
 import NotFound from '../404page/NotFound';
 import Login from '../login/Login';
 import Register from '../register/Register';
+import CoursesCard from '../../layout/CoursesCard';
+import CourseDetails from '../courseDetails/CourseDetails';
 
 const router = createBrowserRouter([
     {
@@ -28,7 +30,20 @@ const router = createBrowserRouter([
             },
             {
                 path: '/courses',
+                loader: () => fetch("https://safe-edu-server.vercel.app/courses"),
                 element: <Courses />,
+                children: [
+                    {
+                        path: "/courses",
+                        loader: () => fetch(`https://safe-edu-server.vercel.app/courses`),
+                        element: <CoursesCard />
+                    },
+                    {
+                        path: "/courses/:id",
+                        loader: ({ params }) => fetch(`https://safe-edu-server.vercel.app/courses/${params.id}`),
+                        element: <CourseDetails />
+                    }
+                ]
             },
             {
                 path: '/login',

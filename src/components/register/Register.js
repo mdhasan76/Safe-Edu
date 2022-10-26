@@ -97,7 +97,7 @@ const Register = () => {
                         </div>
 
                         <div className='mt-3'>
-                            <p className='text-2xl font-medium mb-5 text-center text-fuchsia-500'> _______or_______</p>
+                            <div className="divider divider-vertical">OR</div>
                             <div className="form-control mb-2">
                                 <button onClick={handleGoogle} className="btn btn-outline btn-primary">Continew with Google</button>
                             </div>
