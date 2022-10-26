@@ -4,10 +4,23 @@ import { Link } from 'react-router-dom';
 import logo from '../../asssets/logo.jpg'
 import { AuthContext } from '../authContext/AuthProvider';
 import { FaUserCircle } from 'react-icons/fa'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     console.log(user.photoURL)
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                console.log('logOut successfull')
+                toast.success('log out')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
     return (
         <section className='bg-slate-100  sticky top-0 z-10'>
             <div className="navbar px-2 lg:px-5 mx-auto max-w-6xl ">
@@ -51,12 +64,13 @@ const Navbar = () => {
                     <div className='ml-2'>
                         {
                             user?.uid ?
-                                <button className='btn btn-sm border-none'> Sign out</button> :
+                                <button onClick={handleLogOut} className='btn btn-sm border-none'> Sign out</button> :
                                 <button className=' btn btn-sm bg-teal-500 border-none'><Link to={'/login'}>Log In</Link></button>
                         }
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </section>
     );
 };

@@ -1,7 +1,17 @@
 import React from 'react';
 import { createContext } from 'react';
 import app from '../../firebase/firebase.config';
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, updateProfile } from 'firebase/auth'
+import {
+    createUserWithEmailAndPassword,
+    getAuth,
+    GithubAuthProvider,
+    GoogleAuthProvider,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    updateProfile,
+    signOut
+} from 'firebase/auth'
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -24,6 +34,13 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
+
+    //sign in 
+    const signIn = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
+
     //update name & photourl
     const updateUser = (name, photo) => {
         return updateProfile(auth.currentUser, {
@@ -36,6 +53,14 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, githubProvider);
     }
 
+
+    //sign out 
+    const logOut = () => {
+        return signOut(auth)
+    }
+
+
+    //save user when chenge state
     useEffect(() => {
         const unsribscibe = onAuthStateChanged(auth, user => {
             if (user) {
@@ -50,7 +75,7 @@ const AuthProvider = ({ children }) => {
         return unsribscibe();
     }, [])
 
-    const authInfo = { user, googleSignIn, createNewUser, updateUser, githubSignIn }
+    const authInfo = { user, googleSignIn, createNewUser, updateUser, githubSignIn, signIn, logOut, setUser }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
