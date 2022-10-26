@@ -1,16 +1,17 @@
 import React from 'react';
-import { Link, Outlet, useLoaderData } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
+import SideNav from '../sidenav/SideNav';
 
 const Courses = () => {
     const courseData = useLoaderData();
     console.log(courseData)
 
     return (
-        <div className='grid grid-cols-4'>
+        <div className='sm:grid grid-cols-4'>
             <div className='col-span-1'>
-                <ul className='menu bg-base-100 max-w-xs mx-auto'>
+                <ul className='menu bg-base-100 '>
                     {
-                        courseData.map(course => <li className='text-center hover-bordered rounded-lg' key={course.id}><Link to={'/courses/:id'}>{course.course}</Link></li>)
+                        courseData.map(course => <SideNav key={course.id} course={course.course} />)
                     }
                 </ul>
             </div>
