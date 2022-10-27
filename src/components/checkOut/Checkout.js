@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../authContext/AuthProvider';
-import { FaUserCircle } from 'react-icons/fa'
-import Card from '../../courseCard/Card';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Checkout = () => {
     const { user } = useContext(AuthContext);
@@ -11,7 +10,7 @@ const Checkout = () => {
     } = user;
     // console.log( user)
     return (
-        <div>
+        <div className='max-w-2xl mx-auto my-9'>
             <div className="rounded-2xl shadow-xl max-w-xs my-3 bg-slate-200 mx-auto">
                 <div className="flex justify-center">
 
@@ -37,16 +36,17 @@ const Checkout = () => {
 
             <div>
                 <div className="card card-compact bg-base-100 shadow-xl">
-                    <figure><img src={img} className="" alt="img" /></figure>
+                    <figure><img src={img} className="h-[200px] w-full" alt="img" /></figure>
                     <div className="card-body">
-                        <div className='flex justify-between mt-3 mb-2'>
-                            <span className='bg-slate-200 text-lg font-semibold px-3 '>{teacher}</span>
-                            <span className='bg-slate-200 text-lg font-semibold px-3 '> price {price}</span>
+                        <div className=' mt-3 mb-2'>
+                            <p className='bg-slate-200 text-lg font-semibold px-3 mb-2 '>Teacher: {teacher}</p>
+                            <p className='bg-slate-200 text-lg font-semibold px-3 my-2'> price: {price}</p>
+                            <p className='bg-slate-200 text-lg font-semibold px-3 mb-2'> Course Duration: {time}</p>
                         </div>
                         <h1 className='card-title bg-slate-100 font-mono'>Language: {course}</h1>
                         <h2 className="card-title">{title}</h2>
-                        <div className="card-actions justify-end">
-                            <Link className="btn btn-primary" to={`/courses/`}> see Other Course</Link>
+                        <div className="card-actions justify-end mt-5">
+                            <Link className="btn btn-info" to={`/courses/`}> see Other Course</Link>
                         </div>
                     </div>
                 </div>

@@ -6,10 +6,15 @@ import { AuthContext } from '../authContext/AuthProvider';
 import { FaUserCircle } from 'react-icons/fa'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 
 const Navbar = () => {
+    const [theme, setTheme] = useState(true);
     const { user, logOut } = useContext(AuthContext);
     // console.log(user.photoURL)
+    const handleToogle = () => {
+        setTheme(!theme);
+    }
 
     const handleLogOut = () => {
         logOut()
@@ -36,6 +41,15 @@ const Navbar = () => {
                             <li><Link to={'/blog'}>Blog</Link></li>
                             <li><Link to={'/login'}>Login</Link></li>
                             <li><Link to={'/register'}>Register</Link></li>
+                            <li className='items-center'>
+                                <span>
+                                    {
+                                        theme ? <span>Light</span> :
+                                            <span>Dark</span>
+                                    }
+                                </span>
+                                <input type="checkbox" onChange={handleToogle} className="toggle toggle-accent" checked={!theme} />
+                            </li>
                         </ul>
                     </div>
                     <img className='h-12 rounded-full' src={logo} alt="" />
@@ -48,6 +62,15 @@ const Navbar = () => {
                         <li><Link to={'/faq'}>FAQ </Link></li>
                         <li><Link to={'/blog'}>Blog</Link></li>
                         <li><Link to={'/register'}>Register</Link></li>
+                        <li className='items-center'>
+                            <span>
+                                {
+                                    theme ? <span>Light</span> :
+                                        <span>Dark</span>
+                                }
+                            </span>
+                            <input type="checkbox" onChange={handleToogle} className="toggle toggle-accent" checked={!theme} />
+                        </li>
                     </ul>
                 </div>
                 <div className="navbar-end">
