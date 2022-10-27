@@ -75,7 +75,7 @@ const Navbar = () => {
                 <div className="navbar-end">
                     <div className='tooltip tooltip-bottom' data-tip={user?.displayName}>
                         {
-                            user?.photoURL != null
+                            user?.photoURL
                             &&
                             <img src={user.photoURL
                             } alt="" className='h-8 rounded-full' />

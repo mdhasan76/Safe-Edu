@@ -3,10 +3,13 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../authContext/AuthProvider';
+import { toast } from 'react-toastify';
+
+
+
 
 const Register = () => {
     const [error, setError] = useState('');
-
     const { createNewUser, updateUser, googleSignIn, githubSignIn } =
         useContext(AuthContext);
 
@@ -19,13 +22,14 @@ const Register = () => {
         const photo = form.photourl.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, photo, email, password)
+        // console.log(name, photo, email, password)
 
 
-        setError('')
+        setError('');
         createNewUser(email, password)
             .then(res => {
-                console.log(res.user);
+                // console.log(res.user);
+                toast.success("Account create Successful")
                 form.reset()
                 updateUser(name, photo)
                     .then(() => {
@@ -36,7 +40,7 @@ const Register = () => {
                     })
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
                 setError(err.message)
             })
     }
@@ -86,7 +90,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Photo URL</span>
                             </label>
-                            <input type="text" name='photourl' placeholder="photo url" className="input input-bordered" />
+                            <input type="text" name='photourl' placeholder="photo url" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
