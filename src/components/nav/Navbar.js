@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../asssets/logo.jpg'
 import { AuthContext } from '../authContext/AuthProvider';
-import { FaUserCircle } from 'react-icons/fa'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
@@ -19,7 +18,7 @@ const Navbar = () => {
     const handleLogOut = () => {
         logOut()
             .then(() => {
-                console.log('logOut successfull')
+                // console.log('logOut successfull')
                 toast.success('log out')
             })
             .catch(err => {
@@ -27,7 +26,7 @@ const Navbar = () => {
             })
     }
     return (
-        <section className='bg-slate-100  sticky top-0 z-10'>
+        <section className='bg-slate-100  sticky top-0 z-10 box-border'>
             <div className="navbar px-2 lg:px-5 mx-auto max-w-6xl ">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -77,18 +76,17 @@ const Navbar = () => {
                     <div className='tooltip tooltip-bottom' data-tip={user?.displayName}>
                         {
                             user?.photoURL != null
-                                ?
-                                <img src={user.photoURL
-                                } alt="" className='h-8 rounded-full' /> :
-                                <FaUserCircle className='text-2xl' />
+                            &&
+                            <img src={user.photoURL
+                            } alt="" className='h-8 rounded-full' />
                         }
                     </div>
 
                     <div className='ml-2'>
                         {
                             user?.uid ?
-                                <button onClick={handleLogOut} className='btn btn-sm border-none'> Sign out</button> :
-                                <button className=' btn btn-sm bg-teal-500 border-none'><Link to={'/login'}>Log In</Link></button>
+                                <button onClick={handleLogOut} className='btn btn-sm lg:btn-md border-none'> Sign out</button> :
+                                <button className=' btn btn-sm lg:btn-md bg-teal-500 border-none'><Link to={'/login'}>Log In</Link></button>
                         }
                     </div>
                 </div>

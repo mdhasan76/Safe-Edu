@@ -12,11 +12,11 @@ const Checkout = () => {
     return (
         <div className='max-w-2xl mx-auto my-9'>
             <div className="rounded-2xl shadow-xl max-w-xs my-3 bg-slate-200 mx-auto">
-                <div className="flex justify-center">
+                <div className="flex justify-center pt-5">
 
                     {
                         photoURL != null ?
-                            <img src={photoURL} className="rounded-full border-solid border-white border-2" alt="" /> :
+                            <img src={photoURL} className="rounded-full border-solid h-[100px] border-white border-2" alt="" /> :
 
                             <FaUserCircle className='text-8xl mt-3' />
                     }

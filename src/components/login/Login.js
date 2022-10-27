@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const Login = () => {
     const [errMsg, setErrMsg] = useState('');
-    const { signIn } = useContext(AuthContext);
+    const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -35,6 +35,35 @@ const Login = () => {
             })
 
 
+    }
+
+
+    //Google Sign in 
+    const handleGoogle = () => {
+        googleSignIn()
+            .then(res => {
+                setErrMsg('')
+                // console.log(res.user)
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                console.log(err)
+                setErrMsg(err.message)
+            })
+    }
+
+    //github sign in
+    const handleGithub = () => {
+        githubSignIn()
+            .then(res => {
+                setErrMsg('')
+                // console.log(res.user)
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                console.log(err);
+                setErrMsg(err.message)
+            })
     }
     return (
         <div>
@@ -63,6 +92,15 @@ const Login = () => {
                             <p className='text-rose-600'>{errMsg}</p>
                             <div className="form-control mt-6">
                                 <button className="btn bg-teal-500 border-none">Login</button>
+                            </div>
+                            <div className='mt-3'>
+                                <div className="divider divider-vertical">OR</div>
+                                <div className="form-control mb-2">
+                                    <button onClick={handleGoogle} className="btn btn-outline btn-primary">Continew with Google</button>
+                                </div>
+                                <div className="form-control ">
+                                    <button onClick={handleGithub} className="btn btn-outline">Continew With Github</button>
+                                </div>
                             </div>
                         </form>
                     </div>

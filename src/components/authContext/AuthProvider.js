@@ -67,7 +67,7 @@ const AuthProvider = ({ children }) => {
     //save user when chenge state
     useEffect(() => {
         const unsribscibe = onAuthStateChanged(auth, (user) => {
-            console.log(user);
+            // console.log(user);
             setUser(user);
             setLoading(false);
         })

@@ -6,7 +6,7 @@ const Card = ({ courseData }) => {
     const { id, teacher, course, price, ratings, title, img } = courseData;
 
     return (
-        <div className="card card-compact bg-base-100 shadow-xl">
+        <div className="card card-compact bg-base-100 shadow-xl mb-6">
             <figure><img src={img} className="h-full w-full" alt="Shoes" /></figure>
             <div className="card-body">
                 <div className='flex justify-between mt-3 mb-2'>
