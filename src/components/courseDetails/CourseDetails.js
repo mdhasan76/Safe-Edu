@@ -3,7 +3,7 @@ import { FaDownload } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
 
 const CourseDetails = () => {
-    const { img, teacher, description, title, price, ratings, time, course } = useLoaderData();
+    const { id, img, teacher, description, title, price, ratings, time, course } = useLoaderData();
     // console.log(courseDtails);
     return (
         <div className='mb-10'>
@@ -37,7 +37,7 @@ const CourseDetails = () => {
                     </div>
                 </div>
                 <div className='text-center mt-4'>
-                    <Link to={'/checkout'} className="btn btn-success text-white">Get Premium Access</Link>
+                    <Link to={`/checkout/${id}`} className="btn btn-success text-white">Get Premium Access</Link>
                 </div>
             </div>
         </div>

@@ -48,7 +48,8 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: "/checkout",
+                path: "/checkout/:id",
+                loader: ({ params }) => fetch(`https://safe-edu-server.vercel.app/courses/${params.id}`),
                 element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
             },
             {
